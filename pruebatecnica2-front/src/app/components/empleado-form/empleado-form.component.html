@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>{{ isEditing ? 'Editar Empleado' : 'Nuevo Empleado' }}</h2>
+  <form [formGroup]="empleadoForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="codigo">Código:</label>
+      <input type="number" class="form-control" id="codigo" formControlName="codigo" required>
+    </div>
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" required>
+    </div>
+    <div class="form-group">
+      <label for="apellido1">Primer Apellido:</label>
+      <input type="text" class="form-control" id="apellido1" formControlName="apellido1" required>
+    </div>
+    <div class="form-group">
+      <label for="apellido2">Segundo Apellido:</label>
+      <input type="text" class="form-control" id="apellido2" formControlName="apellido2" required>
+    </div>
+    <div class="form-group">
+      <label for="codigo_departamento">Departamento:</label>
+      <select class="form-control" id="codigo_departamento" formControlName="codigo_departamento" required>
+        <option *ngFor="let dept of departamentos" [value]="dept.codigo">
+          {{dept.codigo}} - {{dept.nombre}}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!empleadoForm.valid">
+      {{ isEditing ? 'Actualizar' : 'Guardar' }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">
+      Cancelar
+    </button>
+  </form>
+</div>

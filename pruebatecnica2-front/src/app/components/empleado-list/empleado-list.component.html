@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2 class="h4 mb-0">Lista de Empleados</h2>
+      <button class="btn btn-primary" (click)="onNewEmpleado()">
+        <i class="bi bi-plus-circle me-1"></i> Nuevo Empleado
+      </button>
+    </div>
+    
+    <div class="card-body">
+      <!-- Formulario de edición -->
+      <div class="card mb-4" *ngIf="selectedEmpleado">
+        <div class="card-header bg-light">
+          <h3 class="h5 mb-0">{{selectedEmpleado.codigo ? 'Editar' : 'Nuevo'}} Empleado</h3>
+        </div>
+        <div class="card-body">
+          <app-empleado-form 
+            [empleado]="selectedEmpleado"
+            (submit)="onUpdateEmpleado($event)"
+            (cancel)="clearSelection()">
+          </app-empleado-form>
+        </div>
+      </div>
+
+      <!-- Tabla de empleados -->
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th class="text-nowrap">Código</th>
+              <th>Nombre</th>
+              <th>Primer Apellido</th>
+              <th>Segundo Apellido</th>
+              <th>Departamento</th>
+              <th class="text-end">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let empleado of empleados" class="align-middle">
+              <td class="fw-semibold">{{empleado.codigo}}</td>
+              <td>{{empleado.nombre}}</td>
+              <td>{{empleado.apellido1}}</td>
+              <td>{{empleado.apellido2 || '-'}}</td>
+        <td>
+          <span class="badge bg-primary">{{empleado.codigo_departamento}}</span>
+        </td>
+        <td class="text-end">
+          <div class="btn-group btn-group-sm" role="group">
+            <button class="btn btn-outline-primary" (click)="editEmpleado(empleado)" title="Editar">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-outline-danger" (click)="deleteEmpleado(empleado.codigo)" title="Eliminar">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

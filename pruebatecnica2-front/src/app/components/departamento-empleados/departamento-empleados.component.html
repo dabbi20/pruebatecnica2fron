@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="h4 mb-0">Departamentos y sus Empleados</h2>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <!-- Panel de Departamentos -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header bg-light">
+              <h3 class="h5 mb-0">Departamentos</h3>
+            </div>
+            <div class="card-body p-0">
+              <div *ngIf="!departamentos.length" class="p-3 text-muted">
+                No hay departamentos disponibles
+              </div>
+              <div class="list-group list-group-flush">
+                <div *ngFor="let dept of departamentos" 
+                     class="list-group-item list-group-item-action"
+                     (click)="selectDepartamento(dept)"
+                     [class.active]="selectedDept?.codigo === dept.codigo">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{dept.nombre}}</h5>
+                    <span class="badge bg-primary rounded-pill">
+                      {{empleadosPorDepartamento[dept.codigo] ? empleadosPorDepartamento[dept.codigo].length : 0}}
+                    </span>
+                  </div>
+                  <small class="text-muted">Código: {{dept.codigo}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel de Empleados -->
+        <div class="col-md-8">
+          <div class="card h-100">
+            <div class="card-header bg-light">
+              <h3 class="h5 mb-0">
+                {{selectedDept ? 'Empleados de ' + selectedDept.nombre : 'Seleccione un departamento'}}
+              </h3>
+            </div>
+            <div class="card-body p-0">
+              <div *ngIf="!selectedDept" class="p-4 text-center text-muted">
+                <i class="bi bi-arrow-left-circle fs-1 d-block mb-2"></i>
+                <p>Seleccione un departamento para ver sus empleados</p>
+              </div>
+              
+              <div *ngIf="selectedDept && (!empleadosPorDepartamento[selectedDept.codigo] || empleadosPorDepartamento[selectedDept.codigo].length === 0)" 
+                   class="p-4 text-center text-muted">
+                <i class="bi bi-people fs-1 d-block mb-2"></i>
+                <p>No hay empleados en este departamento</p>
+              </div>
+
+              <div *ngIf="selectedDept && empleadosPorDepartamento[selectedDept.codigo] && empleadosPorDepartamento[selectedDept.codigo].length > 0" 
+                   class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th class="text-nowrap">Código</th>
+                      <th>Nombre</th>
+                      <th>Primer Apellido</th>
+                      <th>Segundo Apellido</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let empleado of selectedDept ? (empleadosPorDepartamento[selectedDept.codigo] || []) : []" 
+                        class="align-middle">
+                      <td class="fw-semibold">{{empleado.codigo}}</td>
+                      <td>{{empleado.nombre}}</td>
+                      <td>{{empleado.apellido1}}</td>
+                      <td>{{empleado.apellido2 || '-'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

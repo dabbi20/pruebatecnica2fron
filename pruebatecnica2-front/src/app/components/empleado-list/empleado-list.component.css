@@ -1,0 +1,26 @@
+/* Basic styling for the empleado list component */
+.empleado-list {
+  padding: 1rem;
+}
+
+.empleado-item {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.empleado-item:hover {
+  background-color: #f5f5f5;
+}
+
+.empleado-item.selected {
+  background-color: #e3f2fd;
+}
+
+.empleado-name {
+  font-weight: bold;
+}
+
+.empleado-department {
+  color: #666;
+}
