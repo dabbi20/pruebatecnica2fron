@@ -16,19 +16,19 @@ import { Empleado } from '../../models/empleado';
   styleUrls: ['./departamento-empleados.component.css']
 })
 export class DepartamentoEmpleadosComponent implements OnInit {
-  // Lista de departamentos
+  
   departamentos: Departamento[] = [];
   
-  // Lista de todos los empleados
+  
   empleados: Empleado[] = [];
   
-  // Empleados agrupados por departamento
+  
   empleadosPorDepartamento: { [key: number]: Empleado[] } = {};
   
-  // Departamento actualmente seleccionado
+  
   selectedDept: Departamento | null = null;
   
-  // Estados de carga y error
+  
   loading = true;
   error: string | null = null;
 
@@ -49,21 +49,19 @@ export class DepartamentoEmpleadosComponent implements OnInit {
     this.selectedDept = dept;
   }
 
-  /**
-   * Carga los departamentos y empleados
-   */
+ 
   loadDepartamentosYEmpleados(): void {
     this.loading = true;
     this.error = null;
     
-    // Cargar departamentos
+  
     this.departamentoService.getDepartamentos()
       .pipe(first())
       .subscribe({
         next: (departamentos) => {
           this.departamentos = departamentos;
           
-          // Cargar empleados después de cargar los departamentos
+          
           this.loadEmpleados();
         },
         error: (error) => {
@@ -74,9 +72,7 @@ export class DepartamentoEmpleadosComponent implements OnInit {
       });
   }
 
-  /**
-   * Carga los empleados y los organiza por departamento
-   */
+  
   private loadEmpleados(): void {
     this.empleadoService.getEmpleados()
       .pipe(first())
@@ -85,7 +81,7 @@ export class DepartamentoEmpleadosComponent implements OnInit {
           this.empleados = empleados;
           this.organizarEmpleadosPorDepartamento();
           
-          // Seleccionar el primer departamento por defecto si hay departamentos
+          
           if (this.departamentos.length > 0) {
             this.selectedDept = this.departamentos[0];
           }
@@ -100,19 +96,17 @@ export class DepartamentoEmpleadosComponent implements OnInit {
       });
   }
 
-  /**
-   * Organiza los empleados por departamento
-   */
+ 
   private organizarEmpleadosPorDepartamento(): void {
-    // Inicializar el objeto para cada departamento
+    
     this.empleadosPorDepartamento = {};
     
-    // Inicializar un array vacío para cada departamento
+    
     this.departamentos.forEach(dept => {
       this.empleadosPorDepartamento[dept.codigo] = [];
     });
     
-    // Agrupar empleados por departamento
+   
     this.empleados.forEach(empleado => {
       if (empleado.codigo_departamento !== undefined) {
         if (!this.empleadosPorDepartamento[empleado.codigo_departamento]) {

@@ -1,59 +1,59 @@
-# Pruebatecnica2Front
+# Sistema de Gestión de Empleados y Departamentos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+¡Bienvenido al sistema de gestión de empleados y departamentos! Esta aplicación te permite administrar la información de empleados y departamentos de manera sencilla e intuitiva.
 
-## Development server
+## Características principales
 
-To start a local development server, run:
+-  Lista de empleados con sus datos personales
+-  Gestión de departamentos
+-  Agregar, editar y eliminar empleados
+-  Actualizar información de departamentos
+-  Búsqueda y filtrado de información
 
-```bash
-ng serve
-```
+## Requisitos previos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Antes de comenzar, asegúrate de tener instalado:
 
-## Code scaffolding
+- Node.js (versión 16 o superior)
+- npm (viene con Node.js)
+- Angular CLI (instálalo con `npm install -g @angular/cli`)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Cómo comenzar
 
-```bash
-ng generate component component-name
-```
+1. **Clona el repositorio**
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd pruebatecnica2-front
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. **Instala las dependencias**
+   ```bash
+   npm install
+   ```
 
-```bash
-ng generate --help
-```
+3. **Inicia el servidor de desarrollo**
+   ```bash
+   ng serve
+   ```
 
-## Building
+4. **Abre tu navegador**
+   Ve a `http://localhost:4200/`
 
-To build the project run:
+## 🏗️ Estructura del proyecto
 
-```bash
-ng build
-```
+- `/src/app/components` - Componentes de la aplicación
+- `/src/app/services` - Servicios para manejar datos
+- `/src/app/models` - Interfaces y modelos de datos
+- `/src/assets` - Archivos estáticos (imágenes, estilos, etc.)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Cómo usar
 
-## Running unit tests
+### Para empleados:
+- Haz clic en "Nuevo Empleado" para agregar uno nuevo
+- Usa los botones de editar (✏️) y eliminar (🗑️) para gestionar empleados
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Para departamentos:
+- Navega a la sección de Departamentos
+- Agrega, edita o elimina departamentos según sea necesario
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

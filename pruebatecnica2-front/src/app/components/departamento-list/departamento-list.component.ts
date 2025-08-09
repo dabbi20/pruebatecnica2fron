@@ -39,6 +39,7 @@ export class DepartamentoListComponent implements OnInit {
       codigo: 0,
       nombre: ''
     };
+    console.log('Nuevo departamento creado:', this.selectedDepartamento);
   }
 
   clearSelection() {

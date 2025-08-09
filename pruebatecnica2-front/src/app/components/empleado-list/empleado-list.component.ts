@@ -67,25 +67,33 @@ export class EmpleadoListComponent implements OnInit {
   }
 
   onUpdateEmpleado(empleado: Empleado): void {
-    const isEditing = this.selectedEmpleado && this.selectedEmpleado.codigo !== 0;
+    const isEditing = this.selectedEmpleado && this.selectedEmpleado._id;
     
-    if (isEditing) {
-      this.empleadoService.updateEmpleado(this.selectedEmpleado!.codigo, empleado)
+    if (isEditing && this.selectedEmpleado?._id) {
+      // Para actualizar, usamos el _id de MongoDB
+      this.empleadoService.updateEmpleado(this.selectedEmpleado._id, empleado)
         .subscribe({
           next: () => {
             this.loadEmpleados();
             this.clearSelection();
           },
-          error: (error: any) => console.error('Error actualizando empleado:', error)
+          error: (error: any) => {
+            console.error('Error actualizando empleado:', error);
+            alert('Error al actualizar el empleado: ' + (error.error?.message || error.message));
+          }
         });
     } else {
+      // Para crear un nuevo empleado
       this.empleadoService.createEmpleado(empleado)
         .subscribe({
           next: () => {
             this.loadEmpleados();
             this.clearSelection();
           },
-          error: (error: any) => console.error('Error creando empleado:', error)
+          error: (error: any) => {
+            console.error('Error creando empleado:', error);
+            alert('Error al crear el empleado: ' + (error.error?.message || error.message));
+          }
         });
     }
   }

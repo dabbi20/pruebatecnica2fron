@@ -35,8 +35,8 @@ export class DepartamentoFormComponent implements OnInit {
 
   onSubmit() {
     if (this.departamentoForm.valid) {
-      this.submit.emit(this.departamentoForm.value);
-      this.departamentoForm.reset();
+      const formData = { ...this.departamentoForm.value };
+      this.submit.emit(formData);
     }
   }
 

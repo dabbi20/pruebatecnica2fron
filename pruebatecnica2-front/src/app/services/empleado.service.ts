@@ -23,8 +23,8 @@ export class EmpleadoService {
     return this.http.post<Empleado>(this.apiUrl, empleado);
   }
 
-  updateEmpleado(codigo: number, empleado: Empleado): Observable<Empleado> {
-    return this.http.put<Empleado>(`${this.apiUrl}/${codigo}`, empleado);
+  updateEmpleado(id: string, empleado: Empleado): Observable<Empleado> {
+    return this.http.put<Empleado>(`${this.apiUrl}/${id}`, empleado);
   }
 
   deleteEmpleado(codigo: number): Observable<void> {

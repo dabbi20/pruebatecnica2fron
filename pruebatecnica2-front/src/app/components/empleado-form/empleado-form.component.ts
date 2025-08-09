@@ -47,8 +47,12 @@ export class EmpleadoFormComponent implements OnInit {
 
   onSubmit() {
     if (this.empleadoForm.valid) {
-      this.submit.emit(this.empleadoForm.value);
-      this.empleadoForm.reset();
+      const formData = { ...this.empleadoForm.value };
+      // Si estamos en modo edición, incluimos el código del empleado
+      if (this.isEditing && this.empleado) {
+        formData.codigo = this.empleado.codigo;
+      }
+      this.submit.emit(formData);
     }
   }
 
